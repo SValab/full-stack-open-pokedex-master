@@ -9,7 +9,8 @@ describe('Pokedex', function () {
     })
 
     it('can visit a pokemon page', function () {
-        cy.visit(`http://localhost:${PORT}/pokemon/ivysaur`)
+        cy.visit(`http://localhost:${PORT}`)
+        cy.contains('ivysaur').click()
         cy.contains('chlorophyll')
     })
 })
