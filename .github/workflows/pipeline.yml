@@ -15,12 +15,12 @@ jobs:
           node-version: '16'
       - name: npm install
         run: npm install
-      - name: lint
-        run: npm run eslint
-      - name: build
-        run: npm run build
-      - name: test
-        run: npm run test
+      # - name: lint
+      #   run: npm run eslint
+      # - name: build
+      #   run: npm run build
+      # - name: test
+      #   run: npm run test
       # - name: e2e tests
       #   uses: cypress-io/github-action@v2
       #   with:
@@ -31,3 +31,4 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: shahildev-pokedex #Must be unique in Heroku
+          heroku_email: shahil.valab@gmail.com
