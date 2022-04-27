@@ -31,4 +31,3 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "shahildev-pokedex" #Must be unique in Heroku
-          heroku_email: "shahil.valab@gmail.com"
