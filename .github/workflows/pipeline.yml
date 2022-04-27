@@ -35,3 +35,4 @@ jobs:
           heroku_email: shahil.valab@gmail.com
           healthcheck: "https://shahildev-pokedex.herokuapp.com/health"
           checkstring: "ok"
+          rollbackonhealthcheckfailed: true
