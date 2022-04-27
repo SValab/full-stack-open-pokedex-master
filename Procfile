@@ -1,1 +1,1 @@
-web: npm run start-producing nanobots!!!!
+web: npm run start-prod
