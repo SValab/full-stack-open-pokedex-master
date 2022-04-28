@@ -25,6 +25,6 @@ jobs:
       - name: commit message conditional
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-          HAS_SKIP_KEYWORD: "test"
-        if: ${{ HAS_SKIP_KEYWORD }}
+          HAS_SKIP_KEYWORD: "${{ contains(join($COMMIT_MESSAGES),'#skip') }}"
+        if: ${{ $HAS_SKIP_KEYWORD }}
         run: echo "YABA DABA DOOOO"
