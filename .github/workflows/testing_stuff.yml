@@ -23,5 +23,5 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
       - name: commit message conditional
-        if: ${{ toJson(github.event.commits.*.message).contains("#skip") }}
+        if: ${{ contains(toJson(github.event.commits.*.message),'#skip) }}
         run: echo "YABA DABA DOOOO"
