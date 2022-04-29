@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+env:
+  COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+  HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
 
 jobs:
   a_test_job:
@@ -23,15 +26,10 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
       - name: commit message conditional
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-          HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
-        if: ${{ env.HAS_SKIP_KEYWORD }}
-        run: echo "YABA DABA DOOOO"
         if: ${{ env.HAS_SKIP_KEYWORD }}
         run: echo "YABA DABA DOOOO"
 
 # TODO:// 
-#  - multiple if statements
+#  - multiple if statements - no
 #  - workflow level variable to use in both jobs
 #  - functions to call to have less duplicates
