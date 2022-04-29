@@ -55,6 +55,5 @@ jobs:
           HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-        if: |
-        (github.event_name == 'push' && env.HAS_SKIP_KEYWORD)
-        
+        if: ${{ github.event_name == 'push' && 
+              env.HAS_SKIP_KEYWORD}}
