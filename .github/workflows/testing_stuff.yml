@@ -5,8 +5,7 @@ on:
     branches:
       - main
 env:
-  COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-  HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
+  greeting: HiWorlds
 
 jobs:
   a_test_job:
@@ -26,8 +25,11 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
       - name: commit message conditional
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+          HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
         if: ${{ env.HAS_SKIP_KEYWORD }}
-        run: echo "YABA DABA DOOOO"
+        run: echo "YABA DABA DOOOO" && " " && env.greeting 
 
 # TODO:// 
 #  - multiple if statements - no
