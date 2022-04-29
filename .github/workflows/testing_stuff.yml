@@ -28,3 +28,10 @@ jobs:
           HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
         if: ${{ env.HAS_SKIP_KEYWORD }}
         run: echo "YABA DABA DOOOO"
+        if: ${{ env.HAS_SKIP_KEYWORD }}
+        run: echo "YABA DABA DOOOO"
+
+# TODO:// 
+#  - multiple if statements
+#  - workflow level variable to use in both jobs
+#  - functions to call to have less duplicates
