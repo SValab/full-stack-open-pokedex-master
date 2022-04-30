@@ -32,5 +32,5 @@ jobs:
         run: |
           echo ${{env.greeting}}
           echo "COMMIT_MESSAGES: ${{join(env.COMMIT_MESSAGES)}}"
-          echo "HAS_SKIP_KEYWORD: ${{env.HAS_SKIP_KEYWORD}}"
+          echo "HAS_SKIP_KEYWORD: ${{join(env.HAS_SKIP_KEYWORD)}}"
           echo ${{env.HAS_SKIP_KEYWORD != true}}
