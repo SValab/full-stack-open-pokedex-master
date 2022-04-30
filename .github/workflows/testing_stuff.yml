@@ -10,6 +10,9 @@ env:
 jobs:
   a_test_job:
     runs-on: ubuntu-20.04
+    env:
+          x: 5
+          y: ${{env.x}}
     steps:
       - uses: actions/checkout@v2
       - name: gihub context
@@ -35,8 +38,5 @@ jobs:
           echo "HAS_SKIP_KEYWORD: ${{join(env.HAS_SKIP_KEYWORD)}}"
           echo ${{env.HAS_SKIP_KEYWORD != true}}
       - name: test runtime variables
-        env:
-          x: 5
-          y: ${{env.x}}
         run: |
           echo ${{env.y}}
