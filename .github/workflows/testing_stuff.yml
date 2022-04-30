@@ -39,4 +39,4 @@ jobs:
           echo ${{env.HAS_SKIP_KEYWORD != true}}
       - name: test runtime variables
         run: |
-          echo ${{env.y}}
+          echo ${{y}}
