@@ -10,9 +10,6 @@ env:
 jobs:
   a_test_job:
     runs-on: ubuntu-20.04
-    env:
-          x: 5
-          y: ${{env.x}}
     steps:
       - uses: actions/checkout@v2
       - name: gihub context
@@ -29,14 +26,9 @@ jobs:
         run: echo "$COMMIT_MESSAGES"
       - name: commit message conditional
         env:
-          COMMIT_MESSAGES: ${{ toJSON(github.event.commits.*.message) }}
-          HAS_SKIP_KEYWORD: ${{ env.COMMIT_MESSAGES }}
+          HAS_SKIP_KEYWORD: |
+            ${{ contains(join(toJSON(github.event.commits.*.message)),'#skip') }}
         # if: ${{ env.HAS_SKIP_KEYWORD }}
         run: |
-          echo ${{env.greeting}}
-          echo "COMMIT_MESSAGES: ${{join(env.COMMIT_MESSAGES)}}"
-          echo "HAS_SKIP_KEYWORD: ${{join(env.HAS_SKIP_KEYWORD)}}"
+          echo "HAS_SKIP_KEYWORD: ${{env.HAS_SKIP_KEYWORD}}"
           echo ${{env.HAS_SKIP_KEYWORD != true}}
-      - name: test runtime variables
-        run: |
-          echo ${{y}}
