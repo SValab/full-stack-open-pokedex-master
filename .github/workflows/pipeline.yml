@@ -43,11 +43,11 @@ jobs:
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
   tag_release:
-    needs: [simple_deployment_pipeline]
+    needs: simple_deployment_pipeline
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - name: [Bump version and push tag]
+      - name: Bump version and push tag
         uses: anothrNick/github-tag-action@ce4b5ffa38e072fa7a901e417253c438fcc2ccce
         env:
           HAS_SKIP_KEYWORD: ${{ contains(join(toJSON(github.event.commits.*.message)),'#skip') }}
@@ -56,4 +56,4 @@ jobs:
         if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: Testing success status
         # if: ${{success()}}
-        run: echo ${{[Bump version and push tag].status}}
+        run: echo ${{tag_release.status}}
