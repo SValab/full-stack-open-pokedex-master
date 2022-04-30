@@ -56,4 +56,4 @@ jobs:
         if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: Testing success status
         # if: ${{success()}}
-        run: echo ${{<simple_deployment_pipeline>.status}}
+        run: echo ${{job.status}}
