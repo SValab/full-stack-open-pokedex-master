@@ -57,5 +57,5 @@ jobs:
           DEFAULT_BUMP: patch
         if: ${{ github.event_name == 'push' && (env.HAS_SKIP_KEYWORD != true)}}
       - name: Testing success status
-          if: ${{success()}}
-          run: echo it really did bump up the version!
+        if: ${{success()}}
+        run: echo it really did bump up the version!
