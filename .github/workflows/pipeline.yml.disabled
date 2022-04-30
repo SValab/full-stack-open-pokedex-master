@@ -17,10 +17,7 @@ jobs:
         with:
           node-version: '16'
       - name: npm install
-        run: |
-          npm install
-          echo ${{github.event_name}}
-          echo ${{env.HAS_SKIP_KEYWORD}}
+        run: npm install
       - name: lint
         run: npm run eslint
       - name: build
