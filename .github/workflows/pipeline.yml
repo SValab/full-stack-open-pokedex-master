@@ -35,7 +35,7 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
           HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
-        if: ${{ github.event_name == 'push' && !env.HAS_SKIP_KEYWORD}}
+        if: ${{ github.event_name == 'push' && (env.HAS_SKIP_KEYWORD != true)}}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: shahildev-pokedex #Must be unique in Heroku
@@ -55,4 +55,4 @@ jobs:
           HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-        if: ${{ github.event_name == 'push' && !env.HAS_SKIP_KEYWORD}}
+        if: ${{ github.event_name == 'push' && (env.HAS_SKIP_KEYWORD != true)}}
