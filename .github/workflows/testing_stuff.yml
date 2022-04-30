@@ -37,6 +37,6 @@ jobs:
       - name: test runtime variables
         env:
           x: 5
-          y: ${{env.x + 5}}
+          y: ${{env.x}}
         run: |
           echo ${{env.y}}
