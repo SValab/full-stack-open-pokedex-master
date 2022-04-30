@@ -20,10 +20,10 @@ jobs:
         env:
           COMMITS: ${{ toJson(github.event.commits) }}
         run: echo "$COMMITS"
-      - name: commit messages
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-        run: echo "$COMMIT_MESSAGES"
+      # - name: commit messages
+      #   env:
+      #     COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+      #   run: echo "$COMMIT_MESSAGES"
       - name: commit message conditional
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
