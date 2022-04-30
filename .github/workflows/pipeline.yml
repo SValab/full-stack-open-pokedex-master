@@ -33,9 +33,8 @@ jobs:
       - name: deploy to heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-          HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
-        if: ${{ github.event_name == 'push' && (env.HAS_SKIP_KEYWORD != true)}}
+          HAS_SKIP_KEYWORD: ${{ contains(join(toJSON(github.event.commits.*.message)),'#skip') }}
+        if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: shahildev-pokedex #Must be unique in Heroku
@@ -51,11 +50,10 @@ jobs:
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@ce4b5ffa38e072fa7a901e417253c438fcc2ccce
         env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-          HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
+          HAS_SKIP_KEYWORD: ${{ contains(join(toJSON(github.event.commits.*.message)),'#skip') }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-        if: ${{ github.event_name == 'push' && (env.HAS_SKIP_KEYWORD != true)}}
+        if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: Testing success status
         if: ${{success()}}
         run: echo it really did bump up the version!
