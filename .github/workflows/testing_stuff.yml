@@ -5,7 +5,7 @@ on:
     branches:
       - main
 env:
-  greeting: HiWorld
+  greeting: HiWorlds
 
 jobs:
   a_test_job:
