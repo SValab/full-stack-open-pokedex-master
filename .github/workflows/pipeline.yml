@@ -20,6 +20,7 @@ jobs:
         run: |
           npm install
           echo ${{github.event_name}}
+          echo ${{env.HAS_SKIP_KEYWORD}}
       - name: lint
         run: npm run eslint
       - name: build
