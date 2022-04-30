@@ -28,7 +28,7 @@ jobs:
         env:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
           HAS_SKIP_KEYWORD: "${{ contains(join(env.COMMIT_MESSAGES),'#skip') }}"
-        if: ${{ env.HAS_SKIP_KEYWORD }}
+        # if: ${{ env.HAS_SKIP_KEYWORD }}
         run: |
           echo ${{env.greeting}}
-          echo ${{HAS_SKIP_KEYWORD}}
+          echo ${{env.HAS_SKIP_KEYWORD}}
