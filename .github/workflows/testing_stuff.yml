@@ -31,4 +31,4 @@ jobs:
         # if: ${{ env.HAS_SKIP_KEYWORD }}
         run: |
           echo ${{env.greeting}}
-          echo ${{"!(env.HAS_SKIP_KEYWORD)""}}
+          echo ${{"!(env.HAS_SKIP_KEYWORD)"}}
