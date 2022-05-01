@@ -34,6 +34,7 @@ jobs:
     needs: testing_pipeline
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/checkout@v3
       - name: deploy to heroku
         id: heroku_deployment
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
