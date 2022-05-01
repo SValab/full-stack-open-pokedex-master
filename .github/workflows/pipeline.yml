@@ -24,6 +24,8 @@ jobs:
         run: npm run build
       - name: test
         run: npm run test
+        echo: |
+            "::set-output name=testing_did_run::true"
       # - name: e2e tests
       #   uses: cypress-io/github-action@v2
       #   with:
@@ -47,8 +49,6 @@ jobs:
           healthcheck: "https://shahildev-pokedex.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
-          echo: |
-            "::set-output name=heroku_did_deploy::true"
   tag_release_pipeline:
     needs: deployment_pipeline
     runs-on: ubuntu-20.04
@@ -65,4 +65,4 @@ jobs:
       - name: Testing success status
         # if: ${{needs.simple_deployment_pipeline.result}}
         run: |
-          echo ${{needs.deployment_pipeline.outputs.heroku_did_deploy}}
+          echo ${{needs.testing_pipeline.outputs.testing_did_run}}
