@@ -73,4 +73,4 @@ jobs:
             details: 'Fear not because I am here'
             footer: You will..
             text: Batman do you bleed?
-            webhookUrl: ${{ secrets.DISCORD_CUSTOM }}
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
