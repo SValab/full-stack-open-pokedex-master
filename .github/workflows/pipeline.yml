@@ -63,4 +63,4 @@ jobs:
       - name: Testing success status
         # if: ${{needs.simple_deployment_pipeline.result}}
         run: |
-          echo ${{needs.deployment_pipeline.steps.heroku_deployment.outcome}}
+          echo ${{steps.tag_release.outcome}}
