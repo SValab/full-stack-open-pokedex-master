@@ -68,9 +68,9 @@ jobs:
             severity: info
             username: Superman
             color: '#FFEB00'
-            avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
+            avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
             description: Initialising Krypton deployment control.
             details: 'Fear not because I am here'
             footer: You will..
             text: Batman do you bleed?
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+            webhookUrl: ${{ secrets.DISCORD_CUSTOM }}
