@@ -33,7 +33,7 @@ jobs:
   deployment_pipeline:
     needs: testing_pipeline
     runs-on: ubuntu-20.04
-      steps:
+    steps:
       - name: deploy to heroku
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         env:
