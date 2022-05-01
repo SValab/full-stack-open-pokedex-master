@@ -23,9 +23,7 @@ jobs:
       - name: build
         run: npm run build
       - name: test
-        run: |
-          npm run test
-          echo "::set-output name=testing_did_run::true"
+        run: npm run test
       # - name: e2e tests
       #   uses: cypress-io/github-action@v2
       #   with:
@@ -63,6 +61,5 @@ jobs:
           DEFAULT_BUMP: patch
         if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: Testing success status
-        # if: ${{needs.simple_deployment_pipeline.result}}
-        run: |
-          echo ${{needs.testing_pipeline.outputs}}
+        if: ${{ success() && steps.tag_release.conclusion != 'skipped' }}
+        run: echo DISCORD TO BE RAN HERE
