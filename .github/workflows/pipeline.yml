@@ -62,7 +62,7 @@ jobs:
           DEFAULT_BUMP: patch
         if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: Discord notification on success
-        uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
+        uses: rjstone/discord-webhook-notify@v1
         if: ${{ success() && steps.tag_release.conclusion != 'skipped' }}
         with:
             severity: info
