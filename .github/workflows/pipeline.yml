@@ -62,13 +62,13 @@ jobs:
           DEFAULT_BUMP: patch
         if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: Discord notification on success
-        uses: rjstone/discord-webhook-notify@v1
         if: ${{ success() && steps.tag_release.conclusion != 'skipped' }}
+        uses: rjstone/discord-webhook-notify@v1
         with:
             severity: info
             username: Superman
             color: '#FFEB00'
-            avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
+            avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
             description: Initialising Krypton deployment control.
             details: 'Fear not because I am here'
             footer: You will..
