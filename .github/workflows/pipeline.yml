@@ -35,6 +35,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: deploy to heroku
+        id: heroku_deployment
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         env:
           HAS_SKIP_KEYWORD: ${{ contains(join(toJSON(github.event.commits.*.message)),'#skip') }}
@@ -52,13 +53,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Bump version and push tag
+        id: tag_release
         uses: anothrNick/github-tag-action@ce4b5ffa38e072fa7a901e417253c438fcc2ccce
         env:
           HAS_SKIP_KEYWORD: ${{ contains(join(toJSON(github.event.commits.*.message)),'#skip') }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}s
           DEFAULT_BUMP: patch
         if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: Testing success status
         # if: ${{needs.simple_deployment_pipeline.result}}
         run: |
-          echo ${{needs.deployment_pipeline}}
+          echo ${{needs.deployment_pipeline.steps.heroku_deployment.outcome}}
