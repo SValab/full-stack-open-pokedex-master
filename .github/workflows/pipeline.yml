@@ -65,4 +65,4 @@ jobs:
       - name: Testing success status
         # if: ${{needs.simple_deployment_pipeline.result}}
         run: |
-          echo ${{needs.testing_pipeline.outputs.testing_did_run}}
+          echo ${{needs.testing_pipeline.outputs}}
