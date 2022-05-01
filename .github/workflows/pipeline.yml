@@ -45,6 +45,7 @@ jobs:
   tag_release:
     needs: simple_deployment_pipeline
     runs-on: ubuntu-20.04
+    if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
     steps:
       - uses: actions/checkout@v3
       - name: Bump version and push tag
@@ -53,7 +54,6 @@ jobs:
           HAS_SKIP_KEYWORD: ${{ contains(join(toJSON(github.event.commits.*.message)),'#skip') }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-        if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: Testing success status
         # if: ${{success()}}
         run: echo ${{job.status}}
