@@ -61,6 +61,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
         if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
-      - name: Testing success status
+      - name: Discord notification on success
+        uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
         if: ${{ success() && steps.tag_release.conclusion != 'skipped' }}
-        run: echo DISCORD TO BE RAN HERE
+        with:
+            severity: info
+            details: Test Succeeded!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
