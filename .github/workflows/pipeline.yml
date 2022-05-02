@@ -67,7 +67,7 @@ jobs:
             severity: info
             username: Github
             color: '#FF0000'
-            avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
+            avatarUrl: https://upload.wikimedia.org/wikipedia/en/thumb/6/6a/Doomsday_%28New_52_version%29.png/250px-Doomsday_%28New_52_version%29.png
             description: commit
             details: "${{github.server_url}}/${{github.repository}}/commit/${{github.sha}} 
                       by ${{github.actor}} broke the build 😓"
