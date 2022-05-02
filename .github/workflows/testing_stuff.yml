@@ -32,4 +32,9 @@ jobs:
       #     echo "HAS_SKIP_KEYWORD: ${{env.HAS_SKIP_KEYWORD}}"
       #     echo ${{!fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: github repo commit url
-        run: echo ${{github.api_url}}
+        run: |
+          echo ${{github.api_url}}
+          echo ${{github.base_ref}}
+          echo ${{github.server_url}}
+          echo ${{github.github.sha}}
+          echo ${{github.github.sha}}
