@@ -56,9 +56,8 @@ jobs:
             username: Github
             color: '#00FF00'
             avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
-            description: commit
-            details: ${{}}
-            footer: 'severity: Informational'
+            description: to https://shahildev-pokedex.herokuapp.com by ${{github.actor}}           
+            footer: 'Severity: Informational'
             text: A new version of Pokedex deployed
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Discord notification on failure
@@ -69,9 +68,11 @@ jobs:
             username: Github
             color: '#00FF00'
             avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
-            description: to https://shahildev-pokedex.herokuapp.com by ${{github.actor}}
-            footer: 'severity: Informational'
-            text: A new version of Pokedex deployed
+            description: commit
+            details: "${{github.server_url}}/${{github.repository}}/commit/${{github.sha}} 
+                      by ${{github.actor}} broke the build 😓"
+            footer: 'Severity: Error'
+            text: Build failed
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release_pipeline:
     needs: deployment_pipeline

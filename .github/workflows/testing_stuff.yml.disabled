@@ -34,4 +34,4 @@ jobs:
       - name: github repo commit url
         run: |
           echo "${{github.server_url}}/${{github.repository}}/commit/${{github.sha}} 
-            by ${{github.actor}} broke the build 😞"
+          by ${{github.actor}} broke the build 😞"
