@@ -48,6 +48,31 @@ jobs:
           healthcheck: "https://shahildev-pokedex.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
+      - name: Discord notification on success
+        if: ${{ success() && steps.heroku_deployment.conclusion != 'skipped' }}
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+            severity: info
+            username: Github
+            color: '#00FF00'
+            avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
+            description: commit
+            details: ${{}}
+            footer: 'severity: Informational'
+            text: A new version of Pokedex deployed
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Discord notification on failure
+        if: ${{ failure() && steps.heroku_deployment.conclusion != 'skipped' }}
+        uses: rjstone/discord-webhook-notify@v1
+        with:
+            severity: info
+            username: Github
+            color: '#00FF00'
+            avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
+            description: to https://shahildev-pokedex.herokuapp.com by ${{github.actor}}
+            footer: 'severity: Informational'
+            text: A new version of Pokedex deployed
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release_pipeline:
     needs: deployment_pipeline
     runs-on: ubuntu-20.04
@@ -61,16 +86,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
         if: ${{ github.event_name == 'push' && !fromJSON(env.HAS_SKIP_KEYWORD)}}
-      - name: Discord notification on success
-        if: ${{ success() && steps.tag_release.conclusion != 'skipped' }}
-        uses: rjstone/discord-webhook-notify@v1
-        with:
-            severity: info
-            username: Github
-            color: '#00FF00'
-            avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
-            description: to https://shahildev-pokedex.herokuapp.com by ${{github.actor}}
-            details: 'Fear not because I am here'
-            footer: 'severity: Informational'
-            text: A new version of Pokedex deployed
-            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
