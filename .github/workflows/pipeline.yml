@@ -66,7 +66,7 @@ jobs:
         with:
             severity: info
             username: Github
-            color: '#00FF00'
+            color: '#FF0000'
             avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
             description: commit
             details: "${{github.server_url}}/${{github.repository}}/commit/${{github.sha}} 
