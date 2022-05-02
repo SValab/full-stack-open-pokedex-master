@@ -71,6 +71,6 @@ jobs:
             avatarUrl: https://cdn.dribbble.com/users/1013040/screenshots/4822813/dribbble.jpg
             description: to https://shahildev-pokedex.herokuapp.com by ${{github.actor}}
             details: 'Fear not because I am here'
-            footer: severity: Informational
+            footer: 'severity: Informational'
             text: A new version of Pokedex deployed
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
