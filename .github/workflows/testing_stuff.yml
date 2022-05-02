@@ -33,5 +33,5 @@ jobs:
       #     echo ${{!fromJSON(env.HAS_SKIP_KEYWORD)}}
       - name: github repo commit url
         run: |
-          echo ${{github.server_url}}/${{github.repository}}/commit/${{github.sha}}
-            by ${{github.actor}} broke the build 😞
+          echo "${{github.server_url}}/${{github.repository}}/commit/${{github.sha}} 
+            by ${{github.actor}} broke the build 😞"
